@@ -9,6 +9,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-styles/typography.html">
+<link rel="import" href="../bower_components/paper-styles/color.html">
 
 <!-- shared styles for all views -->
 <dom-module id="shared-styles">
@@ -34,12 +36,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 30px;
         line-height: 64px;
       }
-
-      h1 {
-        margin: 16px 0;
-        color: #212121;
-        font-size: 22px;
+      
+      h2 {
+        @apply --paper-font-headline;
       }
+        a {
+        text-decoration: none;
+        }
+
+        .title {
+            @apply --paper-font-title;
+        }
+        p {
+            @apply --paper-font-body1;
+        }
     </style>
   </template>
 </dom-module>
