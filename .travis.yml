@@ -8,7 +8,7 @@ before_script:
         - npm install -g polymer-cli
         - bower i
 
-script: polymer build --base-path "/tta-store/"
+script: polymer build
 
 deploy:
           provider: pages
