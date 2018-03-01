@@ -21,7 +21,8 @@
   },
   "builds": [
     {
-      "preset": "es5-bundled"
+      "preset": "es5-bundled",
+      "basePath": "/tta-store/"
     },
     {
       "preset": "es6-bundled"
