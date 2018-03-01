@@ -77,7 +77,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Load and register pre-caching Service Worker
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-          navigator.serviceWorker.register('service-worker.js', {
+          navigator.serviceWorker.register('/tta-store/service-worker.js', {
             scope: Polymer.rootPath,
           });
         });
@@ -102,7 +102,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
   </head>
   <body>
-    <my-app></my-app>
+    <my-app root-path='/tta-store/'></my-app>
     <noscript>
       Please enable JavaScript to view this website.
     </noscript>
