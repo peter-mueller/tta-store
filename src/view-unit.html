@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-route route="{{route}}" pattern="/:id" data="{{routeData}}" active="{{routeActive}}">
     </app-route>
 
-    <iron-ajax url="data/units.json" last-response="{{units}}" auto></iron-ajax>
+    <iron-ajax url="model/units.json" last-response="{{units}}" auto></iron-ajax>
 
     <template is="dom-if" if="[[!routeActive]]">
         <unit-list units="[[units]]"></unit-list>
