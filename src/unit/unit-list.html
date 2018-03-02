@@ -20,6 +20,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
+      a { 
+        color: inherit; 
+      } 
+
       .unitcontainer {
         display: flex;
         flex-direction: column;
@@ -47,12 +51,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <template is="dom-repeat" items="[[units]]">
       <div class="unit">
+          <a href="[[rootPath]]unit/[[item.id]]">
         <div class="unitcontainer layout vertical">
-              <a href="[[rootPath]]unit/[[item.id]]">
+              
                   <div class="title">[[item.name]]</div>
-              </a>
+          
               <p><b>Author:</b> [[item.author]]</p>
         </div>
+      </a>
       </div>
     </template>
     
