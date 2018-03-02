@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 
 <link rel="import" href="unit/unit-list.html">
 <link rel="import" href="unit/unit-detail.html">
@@ -25,10 +26,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-
     <app-route route="{{route}}" pattern="/:id" data="{{routeData}}" active="{{routeActive}}">
     </app-route>
 
+    <iron-ajax url="data/units.json" last-response="{{units}}" auto></iron-ajax>
 
     <template is="dom-if" if="[[!routeActive]]">
         <unit-list units="[[units]]"></unit-list>
@@ -44,12 +45,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       static get properties() {
         return {
           units: {
-            type: Array,
-            value: [
-              { id: "1", name: "Bremsadapter", author: "peter-mueller" },
-              { id: "2", name: "Gaspedal", author: "dalmadima" },
-              { id: "3", name: "Scheinwerfer", author: "darenegade" },
-            ],
+            type: Array
           }
         }
       }

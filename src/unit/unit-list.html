@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../shared-styles.html">
 
 
@@ -19,11 +20,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
-      .unit {
+      .unitcontainer {
         display: flex;
         flex-direction: column;
-
         padding: 16px;
+      }
+
+      .unit {
+      }
+
+      .unit :hover {
+        background-color: #dadada;
+        -webkit-transition: background-color 0.5s ease-in-out;
+        -moz-transition: background-color 0.5s ease-in-out;
+        -o-transition: background-color 0.5s ease-in-out;
+        transition: background-color 0.5s ease-in-out;
       }
 
       .unit + .unit {
@@ -32,13 +43,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
+  <style include="iron-flex iron-flex-alignment"></style>
+
     <template is="dom-repeat" items="[[units]]">
-        <div class="unit">
-            <a href="[[rootPath]]unit/[[item.id]]">
-                <div class="title">[[item.name]]</div>
-            </a>
-            <p>Author: [[item.author]]</p>
+      <div class="unit">
+        <div class="unitcontainer layout vertical">
+              <a href="[[rootPath]]unit/[[item.id]]">
+                  <div class="title">[[item.name]]</div>
+              </a>
+              <p><b>Author:</b> [[item.author]]</p>
         </div>
+      </div>
     </template>
     
     
