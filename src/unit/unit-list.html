@@ -1,0 +1,82 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../shared-styles.html">
+
+
+<dom-module id="unit-list">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .unitcontainer {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+      }
+
+      .unit {}
+
+      .unit :hover {
+        background-color: #dadada;
+        -webkit-transition: background-color 0.2s ease-in-out;
+        -moz-transition: background-color 0.2s ease-in-out;
+        -o-transition: background-color 0.2s ease-in-out;
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      .unit+.unit {
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+      }
+    </style>
+
+    <style include="iron-flex iron-flex-alignment"></style>
+
+    <template is="dom-repeat" items="[[units]]">
+      <div class="unit">
+        <a href="[[rootPath]]unit/[[item.id]]">
+          <div class="unitcontainer layout vertical">
+
+            <div class="title">[[item.name]]</div>
+
+            <p>
+              <b>Author:</b> [[item.author]]</p>
+          </div>
+        </a>
+      </div>
+    </template>
+
+
+  </template>
+
+  <script>
+    class UnitList extends Polymer.Element {
+      static get is() { return 'unit-list'; }
+      static get properties() {
+        return {
+          units: {
+            type: Array,
+            value: [],
+          }
+        };
+      }
+    }
+
+    window.customElements.define(UnitList.is, UnitList);
+  </script>
+</dom-module>

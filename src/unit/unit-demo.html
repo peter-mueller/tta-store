@@ -1,0 +1,40 @@
+
+<link rel="import" href="unit-list.html">
+<h2>Liste von Units (unit-list): </h2>
+<unit-list id="list"></unit-list>
+<script>
+    const list = document.getElementById("list");
+    list.units = [
+        {id: "1", name: "Bremsadapter", author: "peter-mueller"},
+        {id: "2", name: "Gaspedal", author: "dalmadima"},
+        {id: "3", name: "Scheinwerfer", author: "darenegade"},
+    ]
+</script>
+
+
+<link rel="import" href="unit-detail.html">
+<h2>Unit Details (unit-datail)</h2>
+<unit-detail id="normal"></unit-detail>
+
+<h2>Bezahltes Unit: </h2>
+<unit-detail id="payed"></unit-detail>
+
+<script>
+    const normal = document.getElementById("normal");
+    normal.unit =  {
+        id: "1",
+        name: "Bremsadapter",
+        author: "peter-mueller",
+        price: "20.00",
+        payed: false,
+    };
+
+    const payed = document.getElementById("payed");
+    payed.unit =  {
+        id: "1",
+        name: "Gaspedal",
+        author: "dalmadima",
+        price: "33.00",
+        payed: true,
+    };
+</script>
