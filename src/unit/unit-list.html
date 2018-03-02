@@ -20,9 +20,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
-      a { 
-        color: inherit; 
-      } 
+      a {
+        color: inherit;
+      }
 
       .unitcontainer {
         display: flex;
@@ -30,8 +30,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 16px;
       }
 
-      .unit {
-      }
+      .unit {}
 
       .unit :hover {
         background-color: #dadada;
@@ -41,40 +40,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transition: background-color 0.5s ease-in-out;
       }
 
-      .unit + .unit {
-          border-top: 1px solid rgba(0,0,0,0.12);
+      .unit+.unit {
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
       }
-
     </style>
 
-  <style include="iron-flex iron-flex-alignment"></style>
+    <style include="iron-flex iron-flex-alignment"></style>
 
     <template is="dom-repeat" items="[[units]]">
       <div class="unit">
-          <a href="[[rootPath]]unit/[[item.id]]">
-        <div class="unitcontainer layout vertical">
-              
-                  <div class="title">[[item.name]]</div>
-          
-              <p><b>Author:</b> [[item.author]]</p>
-        </div>
-      </a>
+        <a href="[[rootPath]]unit/[[item.id]]">
+          <div class="unitcontainer layout vertical">
+
+            <div class="title">[[item.name]]</div>
+
+            <p>
+              <b>Author:</b> [[item.author]]</p>
+          </div>
+        </a>
       </div>
     </template>
-    
-    
+
+
   </template>
 
   <script>
     class UnitList extends Polymer.Element {
       static get is() { return 'unit-list'; }
       static get properties() {
-          return {
-            units: {
-                type: Array,
-                value: [],
-            }
-          };
+        return {
+          units: {
+            type: Array,
+            value: [],
+          }
+        };
       }
     }
 
