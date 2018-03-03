@@ -24,17 +24,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+
+      #search {
+        border: none;
+        padding: 16px;
+        background: #e5e5e5;
+        border-radius: 2px;
+        width: 100%;
+        
+        margin-bottom: 1em;
+      }
     </style>
 
-    <app-route route="{{route}}" pattern="/:id" data="{{routeData}}" active="{{routeActive}}">
+
+    <app-route route="{{route}}" pattern="/:id" data="{{routeData}}" active="{{detailActive}}">
     </app-route>
 
     <iron-ajax url="model/units.json" last-response="{{units}}" auto></iron-ajax>
 
-    <template is="dom-if" if="[[!routeActive]]">
-        <unit-list units="[[units]]"></unit-list>
+    <template is="dom-if" if="[[!detailActive]]">
+        <input id="search" type="search" role="search" placeholder="Units durchsuchen" value="{{search::input}}">
+      <unit-list units="[[_search(units, search)]]"></unit-list>
     </template>
-    <template is="dom-if" if="[[routeActive]]">
+    <template is="dom-if" if="[[detailActive]]">
       <unit-detail unit="[[_unitById(routeData.id)]]"></unit-detail>
     </template>
   </template>
@@ -45,9 +57,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       static get properties() {
         return {
           units: {
-            type: Array
+            type: Array,
+            value: [],
+          },
+          search: {
+            type: String,
+            value: '',
+            notify: true,
+          },
+          route: {
+            type: Object,
+            notify: true,
           }
         }
+      }
+
+      _search(units, search) {
+        if (!units) {
+          return [];
+        }
+        if (!search || search === "") {
+          return units;
+        }
+        
+        return units.filter(u => u.name.toLowerCase().includes(search.toLowerCase()));
       }
 
       _unitById(id) {
