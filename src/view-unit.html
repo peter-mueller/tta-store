@@ -47,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <unit-list units="[[_search(units, search)]]"></unit-list>
     </template>
     <template is="dom-if" if="[[detailActive]]">
-      <unit-detail unit="[[_unitById(routeData.id)]]"></unit-detail>
+      <unit-detail unit="[[_unitById(units,routeData.id)]]"></unit-detail>
     </template>
   </template>
 
@@ -62,7 +62,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
           search: {
             type: String,
-            value: '',
             notify: true,
           },
           route: {
@@ -79,12 +78,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         if (!search || search === "") {
           return units;
         }
-        
+
         return units.filter(u => u.name.toLowerCase().includes(search.toLowerCase()));
       }
 
-      _unitById(id) {
-        return this.units.find(u => u.id == id);
+      _unitById(units,id) {
+        return units.find(u => u.id == id);
       }
     }
 
