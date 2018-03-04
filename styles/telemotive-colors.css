@@ -1,0 +1,111 @@
+/* Telemotive Hellblau */
+.bg-lightblue{
+    background-color: #009fe3;
+}
+.font-lightblue{
+    color: #009fe3;
+}
+.border-lightblue{
+    border: #009fe3;
+}
+
+/* Telemotive Gelb */
+.bg-yellow{
+    background-color: #ffdd00;
+}
+.font-yellow{
+    color: #ffdd00;
+}
+.border-yellow{
+    border: #ffdd00;
+}
+
+/* Telemotive Dunkelblau */
+.bg-darkblue{
+    background-color: #0c1c49;
+}
+.font-darkblue{
+    color: #0c1c49;
+}
+.border-darkblue{
+    border: #0c1c49;
+}
+
+/* LINKS */
+a{
+    color: #0c1c49;
+}
+a:hover, a:active, a:focus{
+    color: #009fe3;
+    text-decoration: none;
+    outline: none;
+}
+
+/* Opacities */
+
+.opacity_2{
+    opacity: 0.2;
+}
+.opacity_4{
+    opacity: 0.4;
+}
+.opacity_6{
+    opacity: 0.6;
+}
+.opacity_8{
+    opacity: 0.8;
+}
+
+/* FONT */
+@font-face { 
+    font-family: 'helvetica_bold'; src: url('../tm-fonts/Helvetica-Bold.otf');
+}
+
+@font-face {
+    font-family: "Fedra Sans Alt";
+    src: url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000168-1425559204.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000168-1425559204.eot?#iefix") format("embedded-opentype"), url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000168-1425559204.woff") format("woff"), url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000168-1425559204.svg#typotheque_webfonts_service") format("svg");
+    font-style: Normal;
+    font-weight: 300;
+    font-stretch: normal;
+}
+@font-face {
+    font-family: "Fedra Sans Alt Italic";
+    src: url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000169-1425559207.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000169-1425559207.eot?#iefix") format("embedded-opentype"), url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000169-1425559207.woff") format("woff"), url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000169-1425559207.svg#typotheque_webfonts_service") format("svg");
+    font-style: Italic;
+    font-weight: 300;
+    font-stretch: normal;
+}
+@font-face {
+    font-family: "Fedra Sans Alt Light";
+    src: url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000168-1425559204.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000168-1425559204.eot?#iefix") format("embedded-opentype"), url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000168-1425559204.woff") format("woff"), url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000168-1425559204.svg#typotheque_webfonts_service") format("svg");
+    font-style: Normal;
+    font-weight: 300;
+    font-stretch: normal;
+}
+@font-face {
+    font-family: "Fedra Sans Alt Light Italic";
+    src: url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000169-1425559207.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000169-1425559207.eot?#iefix") format("embedded-opentype"), url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000169-1425559207.woff") format("woff"), url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000169-1425559207.svg#typotheque_webfonts_service") format("svg");
+    font-style: Italic;
+    font-weight: 300;
+    font-stretch: normal;
+}
+@font-face {
+    font-family: "Fedra Sans Alt Bold";
+    src: url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000184-1425559209.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000184-1425559209.eot?#iefix") format("embedded-opentype"), url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000184-1425559209.woff") format("woff"), url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000184-1425559209.svg#typotheque_webfonts_service") format("svg");
+    font-style: Normal;
+    font-weight: 700;
+    font-stretch: normal;
+}
+@font-face {
+    font-family: "Fedra Sans Alt Bold Italic";
+    src: url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000185-1425559211.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000185-1425559211.eot?#iefix") format("embedded-opentype"), url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000185-1425559211.woff") format("woff"), url("https://s3-eu-west-1.amazonaws.com/fonts-ireland.typotheque.com/WF-025498-008037-000185-1425559211.svg#typotheque_webfonts_service") format("svg");
+    font-style: Italic;
+    font-weight: 700;
+    font-stretch: normal;
+}

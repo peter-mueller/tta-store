@@ -1,0 +1,92 @@
+@viewport {
+    width: device-width;
+    user-zoom:fixed;
+}
+
+/* elements to hide on device */
+.sidepanel,.menu-189 > ul > li:last-child{
+    display:none;
+}
+
+/* startseite */
+.sub-teaser-wrapper {
+    clear: both;
+    float: left;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+}
+
+/* header pictures */
+.header-picture .csc-textpic-caption {
+    left: 105px;
+}
+
+/* carousel */
+.carousel-caption{
+    left: 80px;
+}
+
+
+/* navbar */
+
+.navigation > li{
+    width: 140px;
+}
+
+.breadcrumb{
+    padding-left: 2%;
+}
+
+.dropdown{
+	max-width: 100%;
+}
+/* while there are only 3 products in menu */
+.menu-194{
+	min-height: 240px;
+}
+
+.menu-331 {
+    border-left: none;
+    height: auto;
+	float: left !important;
+}
+
+/* footer */
+.footer-row {
+    width: 150px;
+}
+
+.footer-row:nth-child(3n+4) {
+    clear: none;
+}
+
+.footer .col-md-10{
+    float:left;
+}
+.footer .col-md-2{
+    float:right;
+}
+
+/* form elements */
+input, select, textarea{
+    max-width: 100%;
+}
+
+.powermail_form_1 .powermail_fieldwrap{
+    max-width: 100% !important;
+}
+
+.powermail_fieldwrap_textarea{
+    float: left !important;
+}
+
+.powermail_form_1 input[type="submit"], input[type="submit"]{
+    float: left !important;
+}
+
+/* allgemeiner content */
+.fixed-width{
+    padding:0 2%;
+}
