@@ -49,7 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <template is="dom-if" if="[[unit.payed]]">
                         <paper-button id="install" on-tap="_onInstall">INSTALLIEREN</paper-button>
                 </template>
-                <template is="dom-if" if="{{_checkAccess(unit.payed, storedUser.access)}}">
+                <template is="dom-if" if="{{_checkAccess(unit.payed, storedUser)}}">
                         <paper-button id="buy" on-tap="_onBuy">KAUFEN</paper-button>
                 </template>
             </div>
@@ -86,8 +86,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return Number(price).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
       }
 
-      _checkAccess(unitPayed, access) {
-          return !unitPayed && access;
+      _checkAccess(unitPayed, user) {
+          return !unitPayed && user;
       }
     }
 

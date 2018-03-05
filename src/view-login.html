@@ -16,15 +16,17 @@
         <style>
             :host {
                 display: block;
-
-                padding: 16px;
+                max-width: 200px;
+                margin: 25px;
             }
 
             .wrapper-btns {
                 margin-top: 15px;
             }
-            paper-button.link {
-                color: #757575;
+
+            paper-button {
+                background-color: var(--app-secondary-color);
+                color:  white;
             }
 
             .alert-error {
@@ -42,30 +44,19 @@
         <iron-localstorage name="user-storage" value="{{storedUser}}"></iron-localstorage>
         <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
 
-        <div class="card">
-
-            <div id="unauthenticated" hidden$="[[storedUser.logged_in]]">
+        <div>
+            <div id="unauthenticated">
                 <h1>Log In</h1>
-
-                <p><strong>Log in</strong> or <strong>sign up</strong> to access the TTA Asset Store</p>
 
                 <template is="dom-if" if="[[error]]">
                     <p class="alert-error"><strong>Error:</strong> [[error]]</p>
                 </template>
 
-                <paper-input-container>
-                    <label slot="input">Username</label>
-                    <iron-input slot="input" bind-value="{{formData.username}}">
-                        <input id="username" type="text" value="{{formData.username}}" placeholder="Username">
-                    </iron-input>
-                </paper-input-container>
+                <paper-input label="Username" type="text" required  value="{{formData.username}}">
+                </paper-input>
 
-                <paper-input-container>
-                    <label>Password</label>
-                    <iron-input slot="input" bind-value="{{formData.password}}">
-                        <input id="password" type="password" value="{{formData.password}}" placeholder="Password">
-                    </iron-input>
-                </paper-input-container>
+                <paper-input label="Password" type="password" required value="{{formData.password}}">
+                </paper-input>
 
                 <div class="wrapper-btns">
                     <paper-button raised class="primary" on-tap="postLogin">Log In</paper-button>
@@ -93,8 +84,8 @@
             postLogin() {
                 console.log('Login request send', this.formData.password);
                 // If user and pw correct -> route to Logged In view
-                if (this.formData.password == 'user' &&
-                    this.formData.username == 'user') {
+                if (this.formData.password == 'bmw' &&
+                    this.formData.username == 'bmw') {
                     this.formData.access = false;
                     this.handleLoginSuccess();
 
@@ -122,8 +113,12 @@
                     logged_in: true,
                     access: this.formData.access,
                 };
-                console.log(this.formData.access);
-                this.set('route.path', 'tta-store/unit');
+                console.log(window.history);
+                if(window.history !== undefined){
+                    window.history.back();
+                } else {
+                    this.set('route.path', 'tta-store/unit');
+                }
                 this.formData = {};
             }
         }

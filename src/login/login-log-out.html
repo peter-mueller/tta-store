@@ -11,6 +11,7 @@
             :host {
                 margin: 0;
                 padding: 0;
+                font-size: 13px;
             }
             paper-button {
                 color: #fff;
@@ -18,7 +19,6 @@
             paper-button.link {
                 color: #fff;
                 display: inline-block;
-                font-size: 13px;
             }
             paper-button.indigo {
                 background-color: var(--paper-indigo-500);
@@ -31,20 +31,21 @@
             paper-button.indigo:hover {
                 background-color: var(--paper-indigo-400);
             }
+
+             #login {
+                color: white;
+            }
         </style>
 
         <app-location route="{{route}}"></app-location>
-
-        <!-- MARKUP GOES HERE -->
         <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
 
-        <template is="dom-if" if="{{!link}}">
-            <paper-button raised class="indigo" on-tap="logout">Log Out [[storedUser.name]]</paper-button>
-        </template>
-
-        <template is="dom-if" if="{{link}}">
-            <paper-button class="link" on-tap="logout">Log Out [[storedUser.name]]</paper-button>
-        </template>
+        <a id = "login" name="login" href="[[rootPath]]login" hidden$="[[storedUser.logged_in]]">Log in</a>
+        <div hidden$="[[!storedUser.logged_in]]">
+            <span class="greeting">Hi [[storedUser.name]]!</span>
+            <paper-button class="link" on-tap="logout">Log Out</paper-button>
+        </div>
+        
 
     </template>
 
@@ -57,17 +58,13 @@
 
                 static get properties() {
                     return {
-                        storedUser: Object,
-                        link: {
-                            type: Boolean,
-                            value: false,
-                        },
+                        storedUser: Object
                     };
                 }
 
                 logout() {
-                    this.storedUser = null;
-                    this.set('route.path', 'tta-store/login');
+                    this.storedUser = undefined;
+                    this.set('route.path', 'tta-store/unit');
                 }
             }
 
