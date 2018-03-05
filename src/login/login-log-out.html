@@ -3,7 +3,10 @@
 <link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../bower_components/brum-global-variable/brum-global-variable.html">
+
+<link rel="import" href="login-form.html">
 
 <dom-module id="login-log-out">
     <template>
@@ -37,15 +40,17 @@
             }
         </style>
 
-        <app-location route="{{route}}"></app-location>
         <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
 
-        <a id = "login" name="login" href="[[rootPath]]login" hidden$="[[storedUser.logged_in]]">Log in</a>
+        <paper-button id = "login" name="login" on-tap="login" hidden$="[[storedUser.logged_in]]">Log in</paper-button>
         <div hidden$="[[!storedUser.logged_in]]">
             <span class="greeting">Hi [[storedUser.name]]!</span>
             <paper-button class="link" on-tap="logout">Log Out</paper-button>
         </div>
         
+        <paper-dialog id="dialog" with-backdrop>
+            <login-form></login-form>
+        </paper-dialog>
 
     </template>
 
@@ -60,6 +65,20 @@
                     return {
                         storedUser: Object
                     };
+                }
+
+                connectedCallback() {
+                    super.connectedCallback();
+                    this.shadowRoot.querySelector('login-form').addEventListener('loginsuccess', _ => this.handleLoginSuccess());
+                    document.body.appendChild(this.$.dialog);
+                }
+
+                login() {
+                    this.$.dialog.opened = true;
+                }
+
+                handleLoginSuccess() {
+                    this.$.dialog.opened = false;
                 }
 
                 logout() {

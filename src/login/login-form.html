@@ -1,16 +1,16 @@
 <!-- Load the Polymer.Element base class -->
-<link rel="import" href="../bower_components/app-route/app-location.html">
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
-<link rel="import" href="../bower_components/iron-input/iron-input.html">
-<link rel="import" href="../bower_components/paper-input/paper-input.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/brum-global-variable/brum-global-variable.html">
-<link rel="import" href="./login/login-log-out.html">
-<link rel="import" href="shared-styles.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-localstorage/iron-localstorage.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/brum-global-variable/brum-global-variable.html">
 
-<dom-module id="view-login">
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="login-form">
     <!-- Defines the element's style and local DOM -->
     <template>
         <style>
@@ -25,7 +25,7 @@
             }
 
             paper-button {
-                background-color: var(--app-secondary-color);
+                background-color: #f04240;
                 color:  white;
             }
 
@@ -40,13 +40,12 @@
 
         </style>
 
-        <app-location route="{{route}}"></app-location>
         <iron-localstorage name="user-storage" value="{{storedUser}}"></iron-localstorage>
         <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
 
         <div>
             <div id="unauthenticated">
-                <h1>Log In</h1>
+                <h1>TTA Login</h1>
 
                 <template is="dom-if" if="[[error]]">
                     <p class="alert-error"><strong>Error:</strong> [[error]]</p>
@@ -59,7 +58,7 @@
                 </paper-input>
 
                 <div class="wrapper-btns">
-                    <paper-button raised class="primary" on-tap="postLogin">Log In</paper-button>
+                    <paper-button raised class="primary" on-tap="postLogin">Login</paper-button>
                 </div>
             </div>
         </div>
@@ -67,8 +66,8 @@
 
     <script>
         // Your new element extends the Polymer.Element base class
-        class ViewLogin extends Polymer.Element {
-            static get is() { return 'view-login'; }
+        class LoginForm extends Polymer.Element {
+            static get is() { return 'login-form'; }
 
             static get properties() {
                 return {
@@ -82,7 +81,7 @@
             }
 
             postLogin() {
-                console.log('Login request send', this.formData.password);
+
                 // If user and pw correct -> route to Logged In view
                 if (this.formData.password == 'bmw' &&
                     this.formData.username == 'bmw') {
@@ -94,36 +93,27 @@
                     this.formData.access = true;
                     this.handleLoginSuccess();
                 } else {
-                    console.log('something bad happened');
                     // TODO: handle specific errors (i.e. missing/ incorrect pw or username)
                     this.error ='Login Failed';
                 }
 
             }
 
-            postRegister() {
-                console.log('Register request send');
-            }
-
             handleLoginSuccess() {
-                console.log('Login success');
                 this.error ='';
                 this.storedUser = {
                     name: this.formData.username,
                     logged_in: true,
                     access: this.formData.access,
                 };
-                console.log(window.history);
-                if(window.history !== undefined){
-                    window.history.back();
-                } else {
-                    this.set('route.path', 'tta-store/unit');
-                }
+                
                 this.formData = {};
+
+                this.dispatchEvent(new CustomEvent('loginsuccess'));
             }
         }
         // Now, register your new custom element so the browser can use it
-        customElements.define(ViewLogin.is, ViewLogin);
+        customElements.define(LoginForm.is, LoginForm);
 
     </script>
 
