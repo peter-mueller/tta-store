@@ -109,7 +109,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         route="{{route}}"
         pattern="[[rootPath]]:page"
         data="{{routeData}}"
-        tail="{{subroute}}">
+        tail="{{subroute}}"
+        query-params="{{routeQuery}}">
     </app-route>
 
     <app-drawer-layout fullbleed narrow="{{narrow}}">
@@ -147,7 +148,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             fallback-selection="404"
             role="main">
           <view-login name="login" route="{{subroute}}"></view-login>
-          <view-unit name="unit" route="{{subroute}}"></view-unit>
+          <view-unit name="unit" route="{{subroute}}" search="{{routeQuery.search}}"></view-unit>
           <view-404 name="404"></view-404>
         </iron-pages>
       </app-header-layout>
