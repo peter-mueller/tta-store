@@ -1,0 +1,25 @@
+<!-- Load the Polymer.Element base class -->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="view-login">
+    <!-- Defines the element's style and local DOM -->
+    <template>
+        <style>
+            :host {
+                display: block;
+
+                padding: 16px;
+            }
+        </style>
+
+        <h1> Login View</h1>
+    </template>
+    <script>
+        // Your new element extends the Polymer.Element base class
+        class ViewLogin extends Polymer.Element {
+            static get is() { return 'view-login'; }
+        }
+        // Now, register your new custom element so the browser can use it
+        customElements.define(ViewLogin.is, ViewLogin);
+    </script>
+</dom-module>
