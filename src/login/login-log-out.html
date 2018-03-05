@@ -67,9 +67,7 @@
 
                 logout() {
                     this.storedUser = null;
-                    this.set('route.path', '/login');
-                    // FIXME: redirect to /login instead of setting url and reloading
-                    window.location.reload();
+                    this.set('route.path', 'tta-store/login');
                 }
             }
 
