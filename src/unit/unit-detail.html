@@ -10,6 +10,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/brum-global-variable/brum-global-variable.html">
+<link rel="import" href="../../bower_components/iron-localstorage/iron-localstorage.html">
 <link rel="import" href="../shared-styles.html">
 
 
@@ -34,6 +36,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
+      <iron-localstorage name="user-storage" value="{{storedUser}}"></iron-localstorage>
+      <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
+
             <h2>[[unit.name]]</h2>
 
             <p>Preis: [[_formatPrice(unit.price)]] €</p>
@@ -44,12 +49,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <template is="dom-if" if="[[unit.payed]]">
                         <paper-button id="install" on-tap="_onInstall">INSTALLIEREN</paper-button>
                 </template>
-                <template is="dom-if" if="[[!unit.payed]]">
+                <template is="dom-if" if="{{_checkAccess(unit.payed, storedUser.access)}}">
                         <paper-button id="buy" on-tap="_onBuy">KAUFEN</paper-button>
                 </template>
             </div>
-    
-    
+
   </template>
 
   <script>
@@ -77,9 +81,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _onInstall() {
           alert("Download unit " + this.unit.id + "!");
       }
-      
+
       _formatPrice(price) {
           return Number(price).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      }
+
+      _checkAccess(unitPayed, access) {
+          return !unitPayed && access;
       }
     }
 
