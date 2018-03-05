@@ -1,10 +1,13 @@
 <!-- Load the Polymer.Element base class -->
+<link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
 <link rel="import" href="../bower_components/iron-input/iron-input.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/brum-global-variable/brum-global-variable.html">
+<link rel="import" href="./login/login-log-out.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="view-login">
@@ -35,13 +38,16 @@
 
         </style>
 
+        <app-location route="{{route}}"></app-location>
         <iron-localstorage name="user-storage" value="{{storedUser}}"></iron-localstorage>
+        <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
 
         <div class="card">
 
             <div id="authenticated" hidden$="[[!storedUser.logged_in]]">
                 <h2>Hello, [[storedUser.name]]!</h2>
                 <p>You are currently logged in. You can access <a href="[[rootPath]]unit">All Units</a>!</p>
+                <login-log-out stored-user="{{storedUser}}"></login-log-out>
             </div>
 
             <div id="unauthenticated" hidden$="[[storedUser.logged_in]]">
@@ -94,29 +100,18 @@
             postLogin() {
                 console.log('Login request send', this.formData.password);
                 // If user and pw correct -> route to Logged In view
-                if (this.formData.password == 'user' && this.formData.username == 'user') {
-                    console.log('Login success normal user');
-                    // Handle success for normal user
-                    this.error ='';
-                    this.storedUser = {
-                        name: this.formData.username,
-                        access_level: 'normal',
-                        logged_in: true,
-                    };
+                if (this.formData.password == 'user' &&
+                    this.formData.username == 'user') {
+                    this.formData.access = false;
+                    this.handleLoginSuccess();
 
-                } else if (this.formData.password == 'manager' && this.formData.username == 'manager') {
-                    console.log('Login success manager');
-                    // Handle success for manager
-                    this.error ='';
-                    this.storedUser = {
-                        name: this.formData.username,
-                        access_level: 'manager',
-                        logged_in: true,
-                    };
-
+                } else if (this.formData.password == 'manager' &&
+                    this.formData.username == 'manager') {
+                    this.formData.access = true;
+                    this.handleLoginSuccess();
                 } else {
                     console.log('something bad happened');
-                    // Handle error
+                    // TODO: handle specific errors (i.e. missing/ incorrect pw or username)
                     this.error ='Login Failed';
                 }
 
@@ -124,6 +119,19 @@
 
             postRegister() {
                 console.log('Register request send');
+            }
+
+            handleLoginSuccess() {
+                console.log('Login success');
+                this.error ='';
+                this.storedUser = {
+                    name: this.formData.username,
+                    logged_in: true,
+                    access: this.formData.access,
+                };
+                console.log(this.formData.access);
+                this.set('route.path', '/unit');
+                this.formData = {};
             }
         }
         // Now, register your new custom element so the browser can use it
