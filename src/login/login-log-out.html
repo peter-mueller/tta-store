@@ -1,5 +1,6 @@
 <!-- log-out.html -->
 
+<link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/brum-global-variable/brum-global-variable.html">
@@ -31,6 +32,8 @@
                 background-color: var(--paper-indigo-400);
             }
         </style>
+
+        <app-location route="{{route}}"></app-location>
 
         <!-- MARKUP GOES HERE -->
         <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
@@ -64,6 +67,9 @@
 
                 logout() {
                     this.storedUser = null;
+                    this.set('route.path', '/login');
+                    // FIXME: redirect to /login instead of setting url and reloading
+                    window.location.reload();
                 }
             }
 
@@ -71,3 +77,5 @@
         }());
     </script>
 </dom-module>
+
+
