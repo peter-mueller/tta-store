@@ -2,7 +2,6 @@
   "entrypoint": "index.html",
   "shell": "src/asset-store.html",
   "fragments": [
-    "src/view-login.html",
     "src/view-unit.html",
     "src/view-404.html"
   ],
