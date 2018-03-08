@@ -6,7 +6,7 @@
 	"description":"Provides an easy Interface to Send and Reseive CAN Messages.",
 	"date": "13.02.2018",
 	"version": "1.0",
-	"Compliance": "TTA Core v3",
+	"support": "TTA Core v3",
 	"price": "250",
 	"logo": "CAN-Interface.png"
 	
@@ -19,7 +19,7 @@
 	"description":"Provides an easy interface for Ethernet Communication.",
 	"date": "13.02.2017",
 	"version": "3.1",
-	"Compliance": "TTA Core v4",
+	"support": "TTA Core v4",
 	"price": "200",
 	"logo": "Ethernet-Interface.png"
     },
@@ -30,7 +30,7 @@
 	"description":"Provides an easy Interface for Serial communication.",
 	"date": "08.01.2017",
 	"version": "2.5",
-	"Compliance": "TTA Core v4",
+	"support": "TTA Core v4",
 	"price": "100",
 	"logo": "Serial-Interface.png"
     },
@@ -41,7 +41,7 @@
 	"description":"Provides an many functions for Image Processing.",
 	"date": "10.05.2017",
 	"version": "1.5",
-	"Compliance": "TTA Core v3",
+	"support": "TTA Core v3",
 	"price": "500",
 	"logo": "Image-Processing.png"
     },
@@ -52,7 +52,7 @@
 	"description":"Provides full functionality for the Telemotive Framegrabber.",
 	"date": "09.07.2016",
 	"version": "3.1",
-	"Compliance": "TTA Core v3",
+	"support": "TTA Core v3",
 	"price": "450",
 	"logo": "Framegrabber-Interface.png"
     },
@@ -60,10 +60,10 @@
         "id": "6",
         "name": "Android Debug Brdige",
         "author": "Telemotive AG",
-	"description":"Provides an easy Interface to Send and Reseive CAN Messages.",
+	"description":"Provides full functionality for ADB.",
 	"date": "07.08.2017",
 	"version": "1.7",
-	"Compliance": "TTA Core v3",
+	"support": "TTA Core v3",
 	"price": "350",
 	"logo": "Android-Debug-Brdige.png"
     },
@@ -74,7 +74,7 @@
 	"description":"Provides full functionality for OCR.",
 	"date": "21.01.2018",
 	"version": "1.8",
-	"Compliance": "TTA Core v3",
+	"support": "TTA Core v3",
 	"price": "800",
 	"logo": "OCR.png"
     },
@@ -85,7 +85,7 @@
 	"description":"Provides full functionality for UDS.",
 	"date": "24.09.2017",
 	"version": "2.7",
-	"Compliance": "TTA Core v3",
+	"support": "TTA Core v3",
 	"price": "400",
 	"logo": "UDS.png"
     }
