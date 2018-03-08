@@ -27,6 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../bower_components/paper-radio-button/paper-radio-button.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="lazy-import" href="view-unit.html">
@@ -125,30 +126,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 					
 			<paper-dialog id="dialog" >
-        <h2>Neue Unit erstellen</h2>
-        <paper-input type="text" always-float-label label="Name"></paper-input>
-        <paper-textarea type="text" always-float-label label="Beschreibung"></paper-textarea>
-        <paper-input type="text" always-float-label label="Autor"></paper-input>
-        <paper-input type="text" always-float-label label="Version"></paper-input>
-        <paper-input type="text" always-float-label label="Preis"></paper-input>
-        <p>
-          <label>Unit zur Verfügung stellen:</label>
-          <paper-radio-group selected="verfuegeung">
-            <paper-radio-button name="intern" checked>Firmenintern</paper-radio-button>
-            <paper-radio-button name="oeffentlich">Öffentlich</paper-radio-button>
-          </paper-radio-group>
-        </p>
-        <paper-checkbox>Unit ist veränderbar</paper-checkbox>
-        <paper-input type="file" label="Logo">
-            <iron-icon icon="upload" slot="prefix"></iron-icon>
-        </paper-input>				
-        <paper-input type="file" label="Unit">
-            <iron-icon icon="upload" slot="prefix"></iron-icon>
-        </paper-input>
-        <div class="buttons">
-            <paper-button dialog-dismiss >Abbrechen</paper-button>
-            <paper-button dialog-confirm autofocus onclick="alert('Neue Unit wurde hochgeladen')">Hochladen</paper-button>
-        </div>
+                <h2>Neue Unit erstellen</h2>
+                <paper-input type="text" always-float-label label="Name" required=true></paper-input>
+				<paper-textarea type="text" always-float-label label="Beschreibung"></paper-textarea>
+                <paper-input type="text" always-float-label label="Autor"></paper-input>
+				<paper-input type="text" always-float-label label="Version"></paper-input>
+				<paper-input type="text" always-float-label label="Preis"></paper-input>				
+				<p>
+					<tab>Sichtbarkeit: 				
+					<tab><paper-radio-button checked>privat</paper-radio-button>
+					<tab><paper-radio-button>öffentlich</paper-radio-button>
+				</p>
+				<p>
+					<tab>Editierbar:     			
+					<paper-radio-button checked>nein</paper-radio-button>
+					<paper-radio-button>ja</paper-radio-button>
+				<p>
+                <paper-input type="file" label="Logo">
+                    <iron-icon icon="upload" slot="prefix"></iron-icon>
+                </paper-input>				
+				<paper-input type="file" label="Unit">
+                    <iron-icon icon="upload" slot="prefix"></iron-icon>
+                </paper-input>
+                <div class="buttons">
+                    <paper-button dialog-dismiss >Abbrechen</paper-button>
+                    <paper-button dialog-confirm autofocus onclick="alert('Neue Unit wurde hochgeladen')">Hochladen</paper-button>
+                </div>
 			</paper-dialog>
           </app-toolbar>
         </app-header>
@@ -159,7 +162,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             fallback-selection="404"
             role="main">
           <view-unit name="unit" route="{{subroute}}" search="{{routeQuery.search}}"></view-unit>
-          <paper-fab onclick="dialog.open()">+</paper-fab>
+          <paper-fab id="add" onclick="dialog.open()">+</paper-fab>
           
           <view-404 name="404"></view-404>
         </iron-pages>
