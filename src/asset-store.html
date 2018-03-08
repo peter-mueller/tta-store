@@ -24,6 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../bower_components/paper-radio-button/paper-radio-button.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="lazy-import" href="view-unit.html">
@@ -116,11 +117,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 					
 			<paper-dialog id="dialog" >
                 <h2>Neue Unit erstellen</h2>
-                <paper-input type="text" always-float-label label="Name"></paper-input>
+                <paper-input type="text" always-float-label label="Name" required=true></paper-input>
 				<paper-textarea type="text" always-float-label label="Beschreibung"></paper-textarea>
                 <paper-input type="text" always-float-label label="Autor"></paper-input>
 				<paper-input type="text" always-float-label label="Version"></paper-input>
-				<paper-input type="text" always-float-label label="Preis"></paper-input>
+				<paper-input type="text" always-float-label label="Preis"></paper-input>				
+				<p>
+					<tab>Sichtbarkeit: 				
+					<tab><paper-radio-button checked>privat</paper-radio-button>
+					<tab><paper-radio-button>öffentlich</paper-radio-button>
+				</p>
+				<p>
+					<tab>Editierbar:     			
+					<paper-radio-button checked>nein</paper-radio-button>
+					<paper-radio-button>ja</paper-radio-button>
+				<p>
                 <paper-input type="file" label="Logo">
                     <iron-icon icon="upload" slot="prefix"></iron-icon>
                 </paper-input>				
