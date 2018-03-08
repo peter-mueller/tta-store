@@ -19,9 +19,9 @@
     "iron-ajax": "^2.1.2",
     "iron-input": "PolymerElements/iron-input#^2.1.1",
     "paper-input": "PolymerElements/paper-input#^2.1.1",
-    "paper-dialog": "PolymerElements/paper-dialog#^2.1.0",
+    "paper-dialog": "^2.1.0",
     "iron-localstorage": "PolymerElements/iron-localstorage#^2.1.1",
-    "brum-global-variable": "SieBrum/brum-global-variable#^1.0.6"
+    "brum-global-variable": "SieBrum/brum-global-variable#^1.0.6",
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
