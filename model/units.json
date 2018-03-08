@@ -3,7 +3,7 @@
         "id": "1",
         "name": "CAN-Interface",
         "author": "Telemotive AG",
-	"description":"Provides an easy Interface to Send and Reseive CAN Messages.",
+	"description":"Provides an easy Interface to Send and Receive CAN Messages.",
 	"date": "13.02.2018",
 	"version": "1.0",
 	"support": "TTA Core v3",
