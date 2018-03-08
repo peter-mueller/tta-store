@@ -16,7 +16,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="unit/unit-list.html">
 <link rel="import" href="unit/unit-detail.html">
 <link rel="import" href="shared-styles.html">
-<link rel="import" href="unit/unit-upload.html">
 
 <dom-module id="view-unit">
   <template>
@@ -54,15 +53,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template is="dom-if" if="[[!detailActive]]">
       <input id="search" type="search" role="search" placeholder="Units durchsuchen" value="{{search::input}}">
       <unit-list units="[[_search(units, search)]]"></unit-list>
-      <paper-fab  id="unit-add" on-tap="_toggleDialog" icon="add">
-      </paper-fab>
-      <unit-upload id="unitUpload"></unit-upload>      
+
     </template>
     <template is="dom-if" if="[[detailActive]]">
       <unit-detail unit="[[_unitById(units,routeData.id)]]"></unit-detail>
-      <paper-fab id="unit-add" on-tap="_toggleDialog" icon="add">
-      </paper-fab>
-      <unit-upload id="unitUpload"></unit-upload>
     </template>
   </template>
 
