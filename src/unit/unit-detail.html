@@ -10,87 +10,105 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../../bower_components/brum-global-variable/brum-global-variable.html">
 <link rel="import" href="../../bower_components/iron-localstorage/iron-localstorage.html">
 <link rel="import" href="../shared-styles.html">
 
 
 <dom-module id="unit-detail">
-  <template>
-    <style include="shared-styles">
-      :host {
-        display: block;
-        padding: 16px;
-      }
-
-      #buttons {
-          display: flex;
-          flex-direction: row;
-            justify-content: flex-end;
-
-            border-top: 1px solid rgba(0,0,0,0.12);
-      }
-
-      #install {
-          color: var(--app-primary-color, #4285f4);
-      }
-    </style>
-
-      <iron-localstorage name="user-storage" value="{{storedUser}}"></iron-localstorage>
-      <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
-
-            <h2>[[unit.name]]</h2>
-
-            <p>Preis: [[_formatPrice(unit.price)]] €</p>
-            <p>Author: [[unit.author]]</p>
-
-
-            <div id="buttons">
-                <template is="dom-if" if="[[unit.payed]]">
-                        <paper-button id="install" on-tap="_onInstall">INSTALLIEREN</paper-button>
-                </template>
-                <template is="dom-if" if="{{_checkAccess(unit.payed, storedUser)}}">
-                        <paper-button id="buy" on-tap="_onBuy">KAUFEN</paper-button>
-                </template>
-            </div>
-
-  </template>
-
-  <script>
-    class UnitDetail extends Polymer.Element {
-      static get is() { return 'unit-detail'; }
-      static get properties() {
-          return {
-            unit: {
-                type: Object,
-                value: {
-                    id: "",
-                    name: "",
-                    author: "",
-                    price: "",
-                    payed: "",
-                },
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+                padding: 16px;
             }
-          };
-      }
 
-      _onBuy() {
-          alert("Buy!");
-      }
+            #buttons {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                border-top: 1px solid rgba(0, 0, 0, 0.12);
+            }
 
-      _onInstall() {
-          alert("Download unit " + this.unit.id + "!");
-      }
+            #install {
+                color: var(--app-primary-color, #4285f4);
+            }
 
-      _formatPrice(price) {
-          return Number(price).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
-      }
+            section {
+                border-top: 1px solid rgba(0, 0, 0, 0.12);
+                padding: 8px;
+            }
 
-      _checkAccess(unitPayed, user) {
-          return !unitPayed && user;
-      }
-    }
+            header {
+                padding: 8px;
+            }
 
-    window.customElements.define(UnitDetail.is, UnitDetail);
-  </script>
+            label {
+                @apply --paper-font-label;
+            }
+        </style>
+
+        <header>
+            <h1>[[unit.name]]</h1>
+            <p>Version [[unit.version]] created by [[unit.author]] on [[unit.date]]</p>
+        </header>
+        <section>
+            <label>Price</label>
+            <p>[[_formatPrice(unit.price)]] €</p>
+        </section>
+        <section>
+            <label>Description</label>
+            <p>[[unit.description]]</p>
+        </section>
+
+        <section>
+            <label>Support</label>
+            <p>[[unit.support]]</p>
+        </section>
+
+        <div id="buttons">
+            <template is="dom-if" if="[[unit.payed]]">
+                <paper-button id="install" on-tap="_onInstall">INSTALLIEREN</paper-button>
+            </template>
+            <template is="dom-if" if="[[!unit.payed]]">
+                <paper-button id="buy" on-tap="_onBuy">KAUFEN</paper-button>
+            </template>
+        </div>
+
+        <paper-toast right id="toast" horizontal-align='right'></paper-toast>
+
+    </template>
+
+    <script>
+        class UnitDetail extends Polymer.Element {
+            static get is() { return 'unit-detail'; }
+            static get properties() {
+                return {
+                    unit: {
+                        type: Object,
+                        value: {},
+                    }
+                };
+            }
+
+            _onBuy() {
+                const toast = this.shadowRoot.querySelector('#toast')
+                toast.text='Unit wurde gekauft';
+                toast.open();
+            }
+
+            _onInstall() {
+                const toast = this.shadowRoot.querySelector('#toast')
+                toast.text="Download unit " + this.unit.id + "!";
+                toast.open();
+            }
+
+            _formatPrice(price) {
+                return Number(price).toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        }
+
+        window.customElements.define(UnitDetail.is, UnitDetail);
+    </script>
 </dom-module>

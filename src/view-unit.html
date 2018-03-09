@@ -21,8 +21,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style include="shared-styles">
       :host {
         display: block;
-
-        padding: 10px;
       }
 
       #search {
@@ -79,7 +77,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return units;
         }
 
-        return units.filter(u => u.name.toLowerCase().includes(search.toLowerCase()));
+        return units.filter(u => {
+          const inName = u.name.toLowerCase().includes(search.toLowerCase());
+          const inDescription = u.description.toLowerCase().includes(search.toLowerCase());
+          const inAuthor = u.author.toLowerCase().includes(search.toLowerCase());
+          return inName || inDescription || inAuthor;
+        });
       }
 
       _unitById(units,id) {

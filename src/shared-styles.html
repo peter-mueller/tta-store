@@ -17,7 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       body {
-        background-color: #fff
+        background-color: #e5e5e5;
       }
 
       .card {
@@ -41,6 +41,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         line-height: 64px;
       }
       
+
+      h1 {
+        @apply --paper-font-display2;
+      }
       h2 {
         @apply --paper-font-headline;
       }
@@ -53,6 +57,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         p {
             @apply --paper-font-body1;
+        }
+
+        label {
+          @apply --paper-font-caption;
         }
     </style>
   </template>
