@@ -1,0 +1,95 @@
+<!-- log-out.html -->
+
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/brum-global-variable/brum-global-variable.html">
+
+<link rel="import" href="login-form.html">
+
+<dom-module id="login-log-out">
+    <template>
+        <style>
+            :host {
+                margin: 0;
+                padding: 0;
+                font-size: 13px;
+            }
+            paper-button {
+                color: #fff;
+            }
+            paper-button.link {
+                color: #fff;
+                display: inline-block;
+            }
+            paper-button.indigo {
+                background-color: var(--paper-indigo-500);
+                color: white;
+                --paper-button-raised-keyboard-focus: {
+                    background-color: var(--paper-pink-a200) !important;
+                    color: white !important;
+                };
+            }
+            paper-button.indigo:hover {
+                background-color: var(--paper-indigo-400);
+            }
+
+             #login {
+                color: white;
+            }
+        </style>
+
+        <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
+
+        <paper-button id = "login" name="login" on-tap="login" hidden$="[[storedUser.logged_in]]">Log in</paper-button>
+        <div hidden$="[[!storedUser.logged_in]]">
+            <span class="greeting">Hi [[storedUser.name]]!</span>
+            <paper-button class="link" on-tap="logout">Log Out</paper-button>
+        </div>
+        
+        <paper-dialog id="dialog" with-backdrop>
+            <login-form></login-form>
+        </paper-dialog>
+
+    </template>
+
+    <script>
+        (function() {
+            class LoginLogOut extends Polymer.Element {
+                static get is() {
+                    return 'login-log-out';
+                }
+
+                static get properties() {
+                    return {
+                        storedUser: Object
+                    };
+                }
+
+                connectedCallback() {
+                    super.connectedCallback();
+                    this.shadowRoot.querySelector('login-form').addEventListener('loginsuccess', _ => this.handleLoginSuccess());
+                    document.body.appendChild(this.$.dialog);
+                }
+
+                login() {
+                    this.$.dialog.opened = true;
+                }
+
+                handleLoginSuccess() {
+                    this.$.dialog.opened = false;
+                }
+
+                logout() {
+                    this.storedUser = undefined;
+                    this.set('route.path', 'tta-store/unit');
+                }
+            }
+
+            window.customElements.define(LoginLogOut.is, LoginLogOut);
+        }());
+    </script>
+</dom-module>
+
+
