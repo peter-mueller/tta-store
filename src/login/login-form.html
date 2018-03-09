@@ -1,0 +1,135 @@
+<!-- Load the Polymer.Element base class -->
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-localstorage/iron-localstorage.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/brum-global-variable/brum-global-variable.html">
+
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="login-form">
+    <!-- Defines the element's style and local DOM -->
+    <template>
+        <style>
+            :host {
+                display: block;
+                position: absolute;
+                 top: 50%;
+                 left: 50%;
+                 transform: translate(-50%, -50%);
+            }
+
+            .wrapper-btns {
+                margin-top: 15px;
+            }
+
+            paper-button {
+                background-color: #f04240;
+                color:  white;
+            }
+
+            .alert-error {
+                background: #ffcdd2;
+                border: 1px solid #f44336;
+                border-radius: 3px;
+                color: #333;
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .card {
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.3s;
+            }
+
+            .container {
+                padding: 1em 1em;
+            }
+
+            .login-header {
+                text-align: center;
+            }
+
+        </style>
+
+        <iron-localstorage name="user-storage" value="{{storedUser}}"></iron-localstorage>
+        <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
+
+        <div class="card">
+            <div class="container" id="unauthenticated">
+                <h1 class="login-header">TTA Login</h1>
+
+                <template is="dom-if" if="[[error]]">
+                    <p class="alert-error"><strong>Error:</strong> [[error]]</p>
+                </template>
+
+                <paper-input label="Username" type="text" required  value="{{formData.username}}">
+                </paper-input>
+
+                <paper-input label="Password" type="password" required value="{{formData.password}}">
+                </paper-input>
+
+                <div class="wrapper-btns">
+                    <paper-button raised class="primary" on-tap="postLogin">Login</paper-button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        // Your new element extends the Polymer.Element base class
+        class LoginForm extends Polymer.Element {
+            static get is() { return 'login-form'; }
+
+            static get properties() {
+                return {
+                    formData: {
+                        type: Object,
+                        value: {},
+                        storedUser: Object,
+                        error: String,
+                    },
+                };
+            }
+
+            postLogin() {
+
+                // If user and pw correct -> route to Logged In view
+                if (this.formData.password == 'bmw' &&
+                    this.formData.username == 'bmw') {
+                    this.formData.access = false;
+                    this.handleLoginSuccess();
+
+                } else if (this.formData.password == 'manager' &&
+                    this.formData.username == 'manager') {
+                    this.formData.access = true;
+                    this.handleLoginSuccess();
+                } else {
+                    // TODO: handle specific errors (i.e. missing/ incorrect pw or username)
+                    this.error ='Login Failed';
+                }
+
+            }
+
+            handleLoginSuccess() {
+                this.error ='';
+                this.storedUser = {
+                    name: this.formData.username,
+                    logged_in: true,
+                    access: this.formData.access,
+                };
+
+                this.formData = {};
+
+                this.dispatchEvent(new CustomEvent('loginsuccess'));
+            }
+        }
+        // Now, register your new custom element so the browser can use it
+        customElements.define(LoginForm.is, LoginForm);
+
+    </script>
+
+</dom-module>

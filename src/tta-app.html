@@ -1,0 +1,70 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/brum-global-variable/brum-global-variable.html">
+<link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
+
+<link rel="import" href="./asset-store.html">
+<link rel="import" href="./login/login-log-out.html">
+<link rel="import" href="my-icons.html">
+
+
+<dom-module id="tta-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <iron-localstorage name="user-storage" value="{{storedUser}}"></iron-localstorage>
+    <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
+
+    <template is="dom-if" if="[[storedUser.logged_in]]">
+        <asset-store></asset-store>
+      </template>
+
+    <template is="dom-if" if="[[!storedUser.logged_in]]">
+        <login-form></login-form>
+    </template>
+  </template>
+
+  <script>
+    // Gesture events like tap and track generated from touch will not be
+    // preventable, allowing for better scrolling performance.
+    Polymer.setPassiveTouchGestures(true);
+
+    class TtaApp extends Polymer.Element {
+      static get is() { return 'tta-app'; }
+
+      static get properties() {
+        return {
+          storedUser: Object
+        };
+      }
+
+      
+    }
+
+    window.customElements.define(TtaApp.is, TtaApp);
+  </script>
+</dom-module>
