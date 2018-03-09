@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../shared-styles.html">
 
 
@@ -74,6 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </template>
         </div>
 
+        <paper-toast right id="toast" horizontal-align='right'></paper-toast>
 
     </template>
 
@@ -90,11 +92,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             _onBuy() {
-                alert("Buy!");
+                const toast = this.shadowRoot.querySelector('#toast')
+                toast.text='Unit wurde gekauft';
+                toast.open();
             }
 
             _onInstall() {
-                alert("Download unit " + this.unit.id + "!");
+                const toast = this.shadowRoot.querySelector('#toast')
+                toast.text="Download unit " + this.unit.id + "!";
+                toast.open();
             }
 
             _formatPrice(price) {
