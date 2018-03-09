@@ -38,6 +38,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
+      [hidden] {
+        /* Chrome and IE fix */
+      display: none !important;
+     }
+
       app-drawer-layout:not([narrow]) [drawer-toggle] {
         display: none;
       }
@@ -108,8 +113,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         tail="{{subroute}}"
         query-params="{{routeQuery}}">
     </app-route>
-
-        <app-drawer-layout fullbleed narrow="{{narrow}}"  hidden$="[[!storedUser]]">
+        <app-drawer-layout fullbleed narrow="{{narrow}}">
             <!-- Drawer content -->
             <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
                 <app-toolbar>Menu</app-toolbar>
@@ -144,10 +148,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </iron-pages>
             </app-header-layout>
         </app-drawer-layout>
-
-    <template is="dom-if" if="[[!storedUser.logged_in]]">
-        <login-form></login-form>
-    </template>
   </template>
 
   <script>

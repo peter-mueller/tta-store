@@ -1,4 +1,5 @@
 bower_components/
+!bower_components/iron-overlay-behavior/**/*
 build/
 node_modules/
 
@@ -70,9 +71,5 @@ fabric.properties
 
 # Sonarlint plugin
 .idea/sonarlint
-
-### Polymer ###
-#Installed components via bower
-bower_components/
 
 # End of https://www.gitignore.io/api/polymer,intellij
